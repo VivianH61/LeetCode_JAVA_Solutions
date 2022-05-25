@@ -1,3 +1,4 @@
+// Approach: backtracking
 class Solution {
   public void backtrack(int n,
                         List<Integer> path,
@@ -25,4 +26,35 @@ class Solution {
     backtrack(n, new ArrayList<Integer>(), nums, output, 0);
     return output;
   }
+}
+
+
+// Optimization: perform swap within the nums, without creating a new array -> less space complexity
+class Solution {
+    public void backtrack(int n,
+                        List<Integer> nums,
+                        List<List<Integer>> output,
+                        int first) {
+        if (first >= n) {
+          output.add(new ArrayList<Integer>(nums));
+            return;
+        }
+        for (int i = 0; i <= first; i++) {
+          Collections.swap(nums, first, i);
+          backtrack(n, nums, output, first + 1);
+          Collections.swap(nums, first, i);
+        }
+
+    }
+
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> output = new LinkedList();
+        int n = nums.length;
+        ArrayList<Integer> numsList = new ArrayList<>();
+        for (int num : nums) {
+            numsList.add(num);
+        }
+        backtrack(n, numsList, output, 0);
+        return output;
+    }
 }
