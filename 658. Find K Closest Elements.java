@@ -78,3 +78,24 @@ class Solution {
     }
 
 }
+
+/* 
+Approach 3: sort with custom comparator
+Time complexity: O(nlogn + klogk)
+Space complexity: O(n)
+*/
+class Solution {
+    public List<Integer> findClosestElements(int[] arr, int k, int x) {
+        // convert arr to list to make use of Collections.sort()
+        List<Integer> sortedArr = new ArrayList<Integer>();
+        for (int num : arr) {
+            sortedArr.add(num);
+        }
+        // sort using custom comparater
+        Collections.sort(sortedArr, (num1, num2) -> Math.abs(num1 - x) - Math.abs(num2 - x));
+        sortedArr = sortedArr.subList(0, k);
+        // sort again to have output in ascending order
+        Collections.sort(sortedArr);
+        return sortedArr;
+    }
+}
