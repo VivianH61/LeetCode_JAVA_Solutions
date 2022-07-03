@@ -12,7 +12,6 @@ class Solution {
     
     public void quickSelect(int[] nums, int l, int r, int k) {
         int pivot = partition(nums, l, r);
-        // if pivot == k - 1, do nothing, nums[pivot] is the result
         if (pivot > k - 1) {
             quickSelect(nums, l, pivot - 1, k);
         } else if (pivot < k - 1) {
