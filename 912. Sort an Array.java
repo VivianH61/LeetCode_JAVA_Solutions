@@ -1,37 +1,35 @@
 /* Quicksort with randomnized partition */
 import java.util.concurrent.ThreadLocalRandom;
 class Solution {
+    public void quicksort(int[]nums, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+        int randomIndex = ThreadLocalRandom.current().nextInt(left, right + 1);
+        int x = nums[randomIndex];
+        swap(nums, randomIndex, right);
+        int i = left;
+        for (int j = left; j < right; j ++) {
+            if (nums[j] < x) {
+                swap(nums, i, j);
+                i ++;
+            } 
+        }
+        swap(nums, i, right);
+        quicksort(nums, left, i - 1);
+        quicksort(nums, i + 1, right);
+    }
+
+    public void swap(int[] nums, int i, int j) {
+        int prev_i = nums[i];
+        nums[i] = nums[j];
+        nums[j] = prev_i;
+    }
+
+    
     public int[] sortArray(int[] nums) {
         quicksort(nums, 0, nums.length - 1);
         return nums;
-    }
-    
-    private void quicksort(int[] nums, int l, int r) {
-        if (l >= r) return;
-        int pivot = partition(nums, l, r);
-        quicksort(nums, l, pivot - 1);
-        quicksort(nums, pivot + 1, r);
-    }
-    
-    private int partition(int[] nums, int l, int r) {
-        int randomIndex = ThreadLocalRandom.current().nextInt(l, r + 1);
-        int x = nums[randomIndex];
-        swap(nums, randomIndex, r);
-        int i = l;
-        for (int j = l; j < r; j ++) {
-            if (nums[j] <= x) {
-                swap(nums, i, j);
-                i++;
-            }
-        }
-        swap(nums, i, r);
-        return i;
-    }
-    
-    private void swap(int[] A, int i, int j) {
-        int prev = A[i];
-        A[i] = A[j];
-        A[j] = prev;
     }
 }
 
