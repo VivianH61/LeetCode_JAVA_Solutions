@@ -7,11 +7,11 @@ find the root that has min height tree
 Approach 1: Topological Sorting
 =》 need to find the nodes thatare overall close to all other nodes, especially the leaf nodes
 
+initialize
+since its undirected, for each node, maintain a list of neighbors
+
 At beginning, put all leaf nodes into the queue
 recursively remove leaf node from the tree
-
-inEdgeCount int
-outEdges []
 """
 class Solution:
     def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
