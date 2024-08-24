@@ -1,7 +1,10 @@
 /*
-Post-order traversal
+subtree
+max value in the left subtree < value in parent node < min value in right subtree
+Post-order traversal (left -> right -> parent)
 The left substree need to tell its parent whether it is BST and the max value in it.
 The right substree need to tell its parent whether it is BST and the min value in it.
+
 */
 class NodeVal {
     int min, max, maxSize;
